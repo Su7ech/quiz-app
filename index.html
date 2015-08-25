@@ -3,32 +3,42 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Movie Quote Quiz</title>
-	<link rel="stylesheet" href="css\style.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,600,400italic,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css">
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
 	<header class="quiz-header">
-		<div class="content">
-			
-		</div>
+		<h1 class="quiz-title">Guess the movie!</h1>
 	</header>
+	<section class="splash-screen">
+		
+	</section>
 	<section class="quiz-container">
 		<div class="content">
-			<div class="left-image"></div>
 			<div class="quiz">
 				<div class="quiz-question">
 					<h2 class="question">"Pull the other one!"</h2>
 				</div>
-				<div class="quiz-answers">
-					<button class="answer answer-a">The Holy Grail</button>
-					<button class="answer answer-b">The Godfather</button>
-					<button class="answer answer-c">Mr. Deeds</button>
-					<button class="answer answer-d">Finding Nemo</button>
+				<ul class="quiz-answers">
+					<li><button class="answer answer-a">The Holy Grail</button></li>
+					<li><button class="answer answer-b">The Godfather</button></li>
+					<li><button class="answer answer-c">Mr. Deeds</button></li>
+					<li><button class="answer answer-d">Finding Nemo</button></li>
+				</ul>
+				<div class="quiz-progress">
+					<ul class="progress-bar">
+						<li><img class="progress" src="imgs/progress-bar/quiz-progress-1.png" alt="1 of 5"></li>
+						<li><img class="progress" src="imgs/progress-bar/quiz-progress-2.png" alt="2 of 5"></li>
+						<li><img class="progress" src="imgs/progress-bar/quiz-progress-3.png" alt="3 of 5"></li>
+						<li><img class="progress" src="imgs/progress-bar/quiz-progress-4.png" alt="4 of 5"></li>
+						<li><img class="progress" src="imgs/progress-bar/quiz-progress-5.png" alt="5 of 5"></li>
+					</ul>
+					<h3>5 of 5</h3>
 				</div>
-				<div class="quiz-progress"></div>
 			</div>
-			<div class="right-image"></div>
 		</div>	
 	</section>
 </body>
