@@ -11,10 +11,10 @@ html {
 }
 body {
 	font-family: 'Josefin Sans', sans-serif;
-	max-width: 70em;
+	max-width: 60em;
 	min-height: 100%;
 	box-shadow: 0 0 10px black;
-	background-color: rgba(211, 211, 211, 0.65);
+	background-color: rgba(150, 150, 150, 0.65);
 	margin: 0 auto;
 }
 a,
@@ -60,7 +60,7 @@ ol {
 	font-size: 35pt;
 	bottom: 0.5em;
 	color: white;
-	text-shadow: 1px 1px 3px #333;
+	text-shadow: 1px 1px 2px #333;
 }
 
 /*Quiz Content*/
@@ -83,36 +83,51 @@ ol {
 	border-radius: 25px;
 }
 .quiz-answers li .answer {
+	font-weight: 600;
 	width: 12.5em;
 	height: 3.125em;
-	background-color: skyblue;
-	border: 1px solid lightblue;
+	background-color: rgba(211, 211, 211, 1);
+	border: 1px solid rgba(255, 255, 255, 1);
 	border-radius: 25px;
 	box-shadow: 1px 1px 2px #aaa;
 	padding: 0;
 }
 .quiz-answers li .answer:hover {
-	background-color: lightblue;
-}
+	background-color: rgba(230, 230, 230, 1);}
 .quiz-progress {
 	margin-top: 5em; 
 }
+/*.quiz-progress .progress-bar {
+	box-shadow: 2px 5px 5px black;
+}*/
 .quiz-progress .progress-bar {
-	height: 2em;
+	/*border: 1px solid red;*/
+	width: 400px;
+	height: 4.5em;
+	border-radius: 50px;
+	margin: 0 auto;
+	box-shadow: 0px 0px 6px black;
+	border: 1px solid rgba(230, 230, 230, 1);
 }
-.quiz-progress .progress-bar li {
+.quiz-progress .progress-bar > div {
 	display: inline-block;
+	margin: 0 -1.85px 50px;
+}
+/*.quiz-progress .progress-bar li {
 	margin: 0 -2px 50px;
+	display: inline-block;
+}*/
+.quiz-progress .progress-bar .first {
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
 }
-.quiz-progress .progress-bar li .progress {
-	height: 5em;
+.quiz-progress .progress-bar .last {
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
 }
+/*.quiz-progress .progress-bar .progress {
+	height: 3.5em;
+}*/
 .quiz-progress h3 {
 	margin-top: 4em;
-}
-
-@media (max-width: 60em) {
-	html {
-		background-size: 60em 100%;
-	}
 }
