@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	loadQuestion(quizQuestions);
+	runQuiz.displayQuestion();
 });
 
 // var quizQuestions = [
@@ -7,21 +7,59 @@ $(document).ready(function() {
 // 	{question: "You talkin' to me?", answer: "Taxi Driver", choices: ["Lelo & Stitch", "Men in Black", "Back to the Future"]}
 // ];
 
-var questions = [];
-var answers = ["The Holy Grail", "Taxi Driver"];
-var question1 = new quizQuestion("Pull the other one!", answers[0], ["The Godfather", "Frozen", "Finding Nemo", answers[0]]);
-// question1.answer = question1.choices[3];
-var question2 = new quizQuestion("You talkin' to me?", answers[1], ["Lelo & Stitch", "Men in Black", answers[1], "Back to the Future"]);
-// question2.answer = question2.choices[2];
+// var questions = [];
+// var answers = ["The Holy Grail", "Taxi Driver"];
 
-function quizQuestion(question, answer, choices) {
+
+
+var quizQuestion = function(question, answer, choices) {
 	this.question = question;
 	this.answer = answer;
 	this.choices = choices; 
 }
+// quizQuestion.prototype.addToArray = function(questions) {
+// 	questions.push(quizQuestion);
+// }
 
-function addToQuestions(array, question) {
-	array.push(question);
+var question1 = new quizQuestion("Pull the other one!", "The Holy Grail", ["The Godfather", "Frozen", "Finding Nemo", "The Holy Grail"]);
+var question2 = new quizQuestion("You talkin' to me?", "Taxi Driver", ["Lelo & Stitch", "Men in Black", "Taxi Driver", "Back to the Future"]);
+
+function loadQuestion(count) {
+	var quizQuestions = []
+	quizQuestions.push(question1, question2);
+	count || quizQuestions.length;
+	return quizQuestions.slice(0, count);
+}
+
+var runQuiz = {
+	counter: 0,
+	playerScore: 0,
+	question: loadQuestion(),
+	displayQuestion: function() {
+		var currentQuestion = this.question[this.counter];
+		var questionDiv = document.getElementById('quote'); // container for quote
+		var node = document.createElement('h2'); // header tag for quote
+		var quote = document.createTextNode(currentQuestion.question); // current quote
+		var choicesDiv = document.getElementById('choices'); // Unordered list for choices
+		var qChoices = currentQuestion.choices; // possible answers for current quote
+		var arrayLength = qChoices.length; // Length of the array of possible answers
+
+		console.log(arrayLength);
+
+
+		node.appendChild(quote);
+		questionDiv.appendChild(node);
+
+		for (var i = 0; i < arrayLength; i++) {
+			var item = document.createElement('li');
+			var button = document.createElement('button')
+			button.innerHTML = qChoices[i];
+			button.className += 'answer';
+			item.appendChild(button);
+			choicesDiv.appendChild(item);
+
+		}
+	}
 }
 
 
