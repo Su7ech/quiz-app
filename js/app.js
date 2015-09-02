@@ -12,38 +12,53 @@ $(document).ready(function() {
 
 
 
-var quizQuestion = function(question, answer, choices) {
-	this.question = question;
-	this.answer = answer;
-	this.choices = choices; 
+// var quizQuestion = function(question, answer, choices) {
+// 	this.question = question;
+// 	this.answer = answer;
+// 	this.choices = choices; 
+// }
+
+var quizQuestion = {
+	q:  [],
+	addQuestion: function(question, answer, choices) {
+		this.q.push({
+			question: question,
+			answer: answer,
+			choices: choices
+		});
+	},
+	getQuestion: function(count) {
+		return this.q[count];
+	}
 }
 // quizQuestion.prototype.addToArray = function(questions) {
 // 	questions.push(quizQuestion);
 // }
 
-var question1 = new quizQuestion("Pull the other one!", "The Holy Grail", ["The Godfather", "Frozen", "Finding Nemo", "The Holy Grail"]);
-var question2 = new quizQuestion("You talkin' to me?", "Taxi Driver", ["Lelo & Stitch", "Men in Black", "Taxi Driver", "Back to the Future"]);
+var question1 = quizQuestion.addQuestion("Pull the other one!", "The Holy Grail", ["The Godfather", "Frozen", "Finding Nemo", "The Holy Grail"]);
+var question2 = quizQuestion.addQuestion("You talkin' to me?", "Taxi Driver", ["Lelo & Stitch", "Men in Black", "Taxi Driver", "Back to the Future"]);
 
-function loadQuestion(count) {
-	var quizQuestions = []
-	quizQuestions.push(question1, question2);
-	count || quizQuestions.length;
-	return quizQuestions.slice(0, count);
-}
+// function loadQuestion(count) {
+// 	var quizQuestions = []
+// 	quizQuestions.push(question1, question2);
+// 	count = quizQuestions.length;
+// 	return quizQuestions.slice(0, count);
+// }
 
 var runQuiz = {
 	counter: 0,
 	playerScore: 0,
-	question: loadQuestion(),
+	question: quizQuestion.q,
 	displayQuestion: function() {
 		var currentQuestion = this.question[this.counter];
 		var questionDiv = document.getElementById('quote'); // container for quote
-		var node = document.createElement('h2'); // header tag for quote
+		var node = document.createElement('h1'); // header tag for quote
 		var quote = document.createTextNode(currentQuestion.question); // current quote
 		var choicesDiv = document.getElementById('choices'); // Unordered list for choices
 		var qChoices = currentQuestion.choices; // possible answers for current quote
 		var arrayLength = qChoices.length; // Length of the array of possible answers
 
+		console.log(currentQuestion);
 		console.log(arrayLength);
 
 
@@ -53,6 +68,7 @@ var runQuiz = {
 		for (var i = 0; i < arrayLength; i++) {
 			var item = document.createElement('li');
 			var button = document.createElement('button')
+
 			button.innerHTML = qChoices[i];
 			button.className += 'answer';
 			item.appendChild(button);
