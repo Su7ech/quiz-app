@@ -10,44 +10,32 @@
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body>
-	<!-- <div id="overlay"></div>
-	<div id="modal">
-		<div id="content"></div>
-		<a href="#" id="close">close</a>
-	</div> -->
 	<header class="quiz-header">
 		<h1 class="quiz-title">Guess the movie!</h1>
 	</header>
-	<section class="quiz-container">
+	<section class="game-container">
 		<div class="content">
-			<div class="quiz">
+			<section id="quiz" class="quiz-container">
 				<div id="quote" class="quiz-question">
-					<!-- <h2 class="question">"Pull the other one!"</h2> -->
+					
 				</div>
 				<ul id="choices" class="quiz-answers">
-					<!-- <li><button class="answer answer-a">The Holy Grail</button></li>
-					<li><button class="answer answer-b">The Godfather</button></li>
-					<li><button class="answer answer-c">Mr. Deeds</button></li>
-					<li><button class="answer answer-d">Finding Nemo</button></li> -->
+					
 				</ul>
 				<div class="quiz-progress">
-					<!-- <ul class="progress-bar">
-						<li><img class="first progress" src="imgs/progress-bar/progress-bar-1.png" alt="1 of 5"></li>
-						<li><img class="progress" src="imgs/progress-bar/progress-bar-2.png" alt="2 of 5"></li>
-						<li><img class="progress" src="imgs/progress-bar/progress-bar-3.png" alt="3 of 5"></li>
-						<li><img class="progress" src="imgs/progress-bar/progress-bar-4.png" alt="4 of 5"></li>
-						<li><img class="last progress" src="imgs/progress-bar/progress-bar-5.png" alt="5 of 5"></li>
-					</ul> -->
-					<!-- <div class="progress-bar">
-						<div><img class="first progress" src="imgs/progress-bar/progress-bar-1.png" alt="1 of 5"></div>
-						<div><img class="progress" src="imgs/progress-bar/progress-bar-2.png" alt="2 of 5"></div>
-						<div><img class="progress" src="imgs/progress-bar/progress-bar-3.png" alt="3 of 5"></div>
-						<div><img class="progress" src="imgs/progress-bar/progress-bar-4.png" alt="4 of 5"></div>
-						<div><img class="last progress" src="imgs/progress-bar/progress-bar-5.png" alt="5 of 5"></div>
-					</div> -->
-					<h3><span>1 of 5</span></h3>
+					
 				</div>
-			</div>
+			</section>
+			<section id="answer" class="answer-container" style="display: none">
+				<div class="answer-header">
+					
+				</div>
+				<hr>
+				<div class="answer-desc">
+					
+				</div>
+				<button id="next" class="next-question">Next Question</button>
+			</section>
 		</div>	
 	</section>
 </body>

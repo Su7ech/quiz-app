@@ -1,94 +1,68 @@
 $(document).ready(function() {
 	runQuiz.displayQuestion();
+	$('.answer').click(function() {
+		var userChoice = $(this).text();
+		runQuiz.checkAnswer(userChoice);
+		$('#quiz').hide();
+		$('#answer').show();
+	});
+	$('#next').click(function() {
+		var userChoice = '';
+		runQuiz.counter += 1;
+		runQuiz.nextQuestion();
+	});
 });
-
-// var quizQuestions = [
-// 	{question: "Pull the other one!", answer: "The Holy Grail", choices: ["The Godfather", "Finding Nemo", "Taxi Driver"]},
-// 	{question: "You talkin' to me?", answer: "Taxi Driver", choices: ["Lelo & Stitch", "Men in Black", "Back to the Future"]}
-// ];
-
-// var questions = [];
-// var answers = ["The Holy Grail", "Taxi Driver"];
-
-
-
-// var quizQuestion = function(question, answer, choices) {
-// 	this.question = question;
-// 	this.answer = answer;
-// 	this.choices = choices; 
-// }
 
 var quizQuestion = {
 	q:  [],
-	addQuestion: function(question, answer, choices) {
+	addQuestion: function(question, answer, choices, desc) {
 		this.q.push({
 			question: question,
 			answer: answer,
-			choices: choices
+			choices: choices,
+			desc: desc
 		});
 	},
 	getQuestion: function(count) {
 		return this.q[count];
 	}
 }
-// quizQuestion.prototype.addToArray = function(questions) {
-// 	questions.push(quizQuestion);
-// }
 
-var question1 = quizQuestion.addQuestion("Pull the other one!", "The Holy Grail", ["The Godfather", "Frozen", "Finding Nemo", "The Holy Grail"]);
-var question2 = quizQuestion.addQuestion("You talkin' to me?", "Taxi Driver", ["Lelo & Stitch", "Men in Black", "Taxi Driver", "Back to the Future"]);
-
-// function loadQuestion(count) {
-// 	var quizQuestions = []
-// 	quizQuestions.push(question1, question2);
-// 	count = quizQuestions.length;
-// 	return quizQuestions.slice(0, count);
-// }
+var question1 = quizQuestion.addQuestion("Pull the other one!", "The Holy Grail", ["The Godfather", "Frozen", "Finding Nemo", "The Holy Grail"], "This line is used in the movie, 'Monty Python and The Holy Grail' during the fight between King Arthur and the Black Knight");
+var question2 = quizQuestion.addQuestion("You talkin' to me?", "Taxi Driver", ["Lelo & Stitch", "Men in Black", "Taxi Driver", "Back to the Future"], "This line is from the movie 'Taxi Driver'. It is said by Robert De'Niro's character when he's speaking to the mirror in his home");
 
 var runQuiz = {
+	currentQuestion: '',
 	counter: 0,
 	playerScore: 0,
-	question: quizQuestion.q,
+	questions: quizQuestion.q,
 	displayQuestion: function() {
-		var currentQuestion = this.question[this.counter];
-		var questionDiv = document.getElementById('quote'); // container for quote
-		var node = document.createElement('h1'); // header tag for quote
-		var quote = document.createTextNode(currentQuestion.question); // current quote
-		var choicesDiv = document.getElementById('choices'); // Unordered list for choices
-		var qChoices = currentQuestion.choices; // possible answers for current quote
+		this.currentQuestion = quizQuestion.getQuestion(this.counter);
+		var quote = this.currentQuestion.question;
+		var qChoices = this.currentQuestion.choices; // possible answers for current quote
 		var arrayLength = qChoices.length; // Length of the array of possible answers
 
-		console.log(currentQuestion);
-		console.log(arrayLength);
-
-
-		node.appendChild(quote);
-		questionDiv.appendChild(node);
-
+		$('#quiz').find('#quote').prepend('<h1>' + quote + '</h1>');
+		
 		for (var i = 0; i < arrayLength; i++) {
-			var item = document.createElement('li');
-			var button = document.createElement('button')
-
-			button.innerHTML = qChoices[i];
-			button.className += 'answer';
-			item.appendChild(button);
-			choicesDiv.appendChild(item);
-
+			$('#quiz').find('#choices').prepend("<li><button class='answer'>" + qChoices[i] + "</button></li>");
 		}
+	},
+	checkAnswer: function(user) {
+		var answer = this.currentQuestion.answer;
+		var correct = "You got it! It's " + answer;
+		var wrong = "Incorrect, the answer is " + answer;
+		console.log(answer);
+		$('#answer').show().find('.answer-header').prepend("<h2>" + (user == answer ? correct : wrong) + "</h2>");
+		
+	},
+	nextQuestion: function() {
+		$('#quote').empty();
+		$('#choices').empty();
+		$('.answer-header').empty();
+		$('.answer-desc').empty();
+		$('#answer').hide();
+		$('#quiz').show();
+		this.displayQuestion();
 	}
 }
-
-
-// function loadQuestion(quizQuestions) {
-// 	var questions = quizQuestions.length;
-// 	var counter = 0;
-// 	var currentQuestion = quizQuestions[counter];
-// 	var currentDiv = document.getElementById('quote');
-// 	var node = document.createElement('h2');
-// 	var quote = document.createTextNode(currentQuestion.question);
-
-// 	node.appendChild(quote);
-// 	currentDiv.appendChild(node);
-
-// 	console.log(currentQuestion);
-// }
