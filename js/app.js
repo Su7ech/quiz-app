@@ -4,6 +4,9 @@ $(document).ready(function() {
 		runQuiz.counter += 1;
 		runQuiz.nextQuestion();
 	});
+	$('#new-game').click(function() {
+		runQuiz.startNewGame();
+	});
 });
 
 var quizQuestion = {
@@ -36,6 +39,9 @@ var runQuiz = {
 	counter: 0,
 	playerScore: 0,
 	questions: quizQuestion.q,
+	welcomeScreen: function() {
+
+	},
 	displayQuestion: function() {
 		this.currentQuestion = quizQuestion.getQuestion(this.counter);
 		var quote = this.currentQuestion.question;
@@ -83,10 +89,46 @@ var runQuiz = {
 		if (this.counter < this.questions.length) {
 			this.displayQuestion();
 		} else {
-			alert("END");
+			this.displayResults();
 		}
 	},
 	displayResults: function() {
-		
+		var playerScore = this.playerScore;
+		var possibleScore = this.questions.length;
+		var finalScore = (playerScore / possibleScore);
+		var results = $('.results h2');
+
+		$('#answer').hide();
+		$('#quote').hide();
+		$('.results-container').show();
+		$('.results-header').prepend("<h1>You scored " + playerScore + " out of " + possibleScore);
+		if ((playerScore == possibleScore) || (finalScore == 1)) {
+			results.text("Perfect Score!!! Way to go!!!");
+		} else if (finalScore > 0.7) {
+			results.text("Good job! You sure know your quotes");
+		} else if (finalScore > 0.5) {
+			results.text("Not bad, but I've seen better...");
+		} else {
+			results.text("Were you even trying?");
+		}
+		// 	$('.results').prepend("<h2>Perfect Score!!! Nicely done!!!</h2>");
+		// } else if ((finalScore / possibleScore) < 0.6) {
+		// 	$('.results').prepend("<h2>Better luck next time...</h2>");
+		// } else if ((finalScore / possibleScore) < 0.7) {
+		// 	$('.results').prepend("<h2>Not bad, could be better though</h2>");
+		// } else {
+		// 	$('.results').prepend("<h2>Good job, you sure know your movie lines!</h2>");
+		// }
+	},
+	startNewGame: function() {
+		$('#answer').hide();
+		$('#quote').show();
+		$('.results-container').hide();
+		$('.results-header').empty();
+		$('.results h2').empty();
+		this.currentQuestion = '';
+		this.counter = 0;
+		this.playerScore = 0;
+		this.displayQuestion();
 	}
 }

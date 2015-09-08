@@ -19,13 +19,21 @@ body {
 	position: relative;
 }
 a,
-button {
+button,
+input {
 	outline: none;
 }
 ul,
 ol {
 	padding-left: 0;
 }
+
+.answer-container hr,
+.quiz-container hr,
+.results-container hr {
+	border: 1px solid black;
+}
+
 .content {
 	width: 60rem;
 	margin: 0 auto;
@@ -79,7 +87,6 @@ ol {
 }
 .quiz-question {
 	padding-top: 30px;
-	margin-bottom: 4em;
 }
 .quiz-answers {
 	margin: 0 auto;
@@ -101,7 +108,8 @@ ol {
 	box-shadow: 1px 1px 2px #aaa;
 	padding: 0;
 }
-.quiz-answers li .answer:hover {
+.quiz-answers li .answer:hover,
+.next-question:hover {
 	background-color: rgba(230, 230, 230, 1);}
 .quiz-progress {
 	margin-top: 5em; 
@@ -133,12 +141,11 @@ ol {
 
 /*Answer Screen*/
 
-.answer-container {
+.answer-container,
+.quiz-container,
+.results-container {
 	width: 40em;
 	margin: 0 auto;
-}
-.answer-container hr {
-	border: 1px solid black;
 }
 .next-question {
 	font-weight: 600;
